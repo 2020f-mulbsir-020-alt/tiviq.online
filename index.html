@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiviq | Endless Entertainment. One Platform.</title>
+  <meta name="description" content="Tiviq is a bold media-first landing page for streaming discovery, trending clips, and creator-driven entertainment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0b10;
+      --bg-soft: #11111a;
+      --panel: #171720;
+      --panel-2: #1c1c24;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.7);
+      --muted-2: rgba(255, 255, 255, 0.52);
+      --red: #ff2d55;
+      --blue: #3b82f6;
+      --green: #27d17f;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --max: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 45, 85, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.16), transparent 26%),
+        radial-gradient(circle at 50% 70%, rgba(39, 209, 127, 0.08), transparent 28%),
+        linear-gradient(180deg, #07070c 0%, var(--bg) 32%, #09090e 100%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 85%);
+      opacity: 0.24;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(11, 11, 16, 0.92), rgba(11, 11, 16, 0.72));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(255, 45, 85, 0.95), rgba(59, 130, 246, 0.9));
+      box-shadow: 0 12px 30px rgba(255, 45, 85, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .nav a:hover {
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(255, 45, 85, 0.12);
+      border: 1px solid rgba(255, 45, 85, 0.35);
+      color: white;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .header-cta:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 45, 85, 0.18);
+      box-shadow: 0 18px 28px rgba(255, 45, 85, 0.15);
+    }
+
+    .hero {
+      padding: 30px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items: center;
+      min-height: calc(100vh - 110px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      box-shadow: 0 0 18px rgba(255, 45, 85, 0.8);
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand,
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 6.5rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      min-height: 50px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red), #ff5c7c);
+      color: white;
+      box-shadow: 0 18px 36px rgba(255, 45, 85, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: white;
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .mini-stat {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-width: 160px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 3px;
+    }
+
+    .mini-stat span {
+      color: var(--muted-2);
+      font-size: 0.9rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-canvas {
+      min-height: 660px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,45,85,0.34), transparent 24%),
+        radial-gradient(circle at 80% 18%, rgba(59,130,246,0.34), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        linear-gradient(180deg, #171720, #101018 68%, #09090e);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+    }
+
+    .hero-canvas::before,
+    .hero-canvas::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(20px);
+      opacity: 0.8;
+    }
+
+    .hero-canvas::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 45, 85, 0.2);
+      right: -40px;
+      top: 14%;
+    }
+
+    .hero-canvas::after {
+      width: 180px;
+      height: 180px;
+      background: rgba(59, 130, 246, 0.2);
+      left: -50px;
+      bottom: 8%;
+    }
+
+    .preview-player {
+      position: absolute;
+      inset: 22px 22px auto 22px;
+      height: 320px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 45, 85, 0.34), transparent 32%),
+        linear-gradient(225deg, rgba(59, 130, 246, 0.24), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+        url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80") center/cover;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .preview-player::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.82));
+    }
+
+    .player-topbar,
+    .player-bottom {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .player-topbar {
+      top: 16px;
+    }
+
+    .player-bottom {
+      bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .live-chip,
+    .tag-chip,
+    .count-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(11, 11, 16, 0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 14px rgba(255,45,85,0.8);
+    }
+
+    .play-button {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255, 45, 85, 0.96), rgba(59, 130, 246, 0.88));
+      box-shadow: 0 20px 40px rgba(255,45,85,0.35);
+      border: 1px solid rgba(255,255,255,0.2);
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .play-button::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 20px solid white;
+      margin-left: 5px;
+    }
+
+    .timeline {
+      flex: 1 1 100%;
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .timeline-track {
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      overflow: hidden;
+    }
+
+    .timeline-track span {
+      display: block;
+      width: 67%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      box-shadow: 0 0 20px rgba(255,45,85,0.45);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted-2);
+      font-size: 0.82rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      width: 210px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(17, 17, 26, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.32);
+      backdrop-filter: blur(14px);
+      transform: rotate(-6deg);
+    }
+
+    .floating-card.card-a {
+      left: -12px;
+      top: 340px;
+    }
+
+    .floating-card.card-b {
+      right: -6px;
+      bottom: 40px;
+      transform: rotate(7deg);
+    }
+
+    .thumb {
+      height: 118px;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.6));
+    }
+
+    .thumb .mini-play {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.16);
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .thumb .mini-play::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid white;
+      margin-left: 2px;
+    }
+
+    .card-meta {
+      display: grid;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .card-meta strong {
+      font-size: 0.96rem;
+      line-height: 1.2;
+    }
+
+    .card-meta span {
+      color: var(--muted-2);
+      font-size: 0.84rem;
+    }
+
+    .section {
+      padding: 82px 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      margin: 0;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    .feed-scroll {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(250px, 1fr);
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .feed-scroll::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .feed-scroll::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+    }
+
+    .feed-scroll::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      border-radius: 999px;
+    }
+
+    .content-card,
+    .category-tile,
+    .creator-card,
+    .support-card,
+    .stat-card,
+    .cta-panel,
+    .watch-panel,
+    .watch-sidebar {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .content-card {
+      scroll-snap-align: start;
+      padding: 14px;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .content-card:hover,
+    .category-tile:hover,
+    .creator-card:hover,
+    .support-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.34);
+    }
+
+    .poster {
+      height: 200px;
+      border-radius: 20px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+      transition: transform 180ms ease;
+    }
+
+    .content-card:hover .poster,
+    .category-tile:hover .poster,
+    .creator-card:hover .poster {
+      transform: scale(1.03);
+    }
+
+    .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.72));
+    }
+
+    .poster-badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: rgba(11,11,16,0.65);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .content-copy {
+      display: grid;
+      gap: 10px;
+      padding: 12px 4px 2px;
+    }
+
+    .content-copy h3,
+    .creator-name,
+    .support-title {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.15;
+    }
+
+    .content-copy p,
+    .creator-role,
+    .support-copy {
+      margin: 0;
+      color: var(--muted-2);
+      font-size: 0.92rem;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .tag-chip {
+      color: white;
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 0.8rem;
+      padding: 7px 11px;
+    }
+
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .category-tile {
+      grid-column: span 2;
+      padding: 16px;
+      min-height: 190px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .category-tile:nth-child(1),
+    .category-tile:nth-child(4) {
+      grid-column: span 3;
+    }
+
+    .category-visual {
+      position: absolute;
+      inset: auto -20px -18px auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.26), transparent 28%),
+        linear-gradient(135deg, rgba(255,45,85,0.92), rgba(59,130,246,0.84));
+      transform: rotate(12deg);
+      box-shadow: 0 24px 40px rgba(255,45,85,0.16);
+    }
+
+    .category-visual::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .category-tile h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .category-tile p {
+      margin: 0;
+      max-width: 20ch;
+      color: var(--muted-2);
+    }
+
+    .creator-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .creator-card {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .creator-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,45,85,0.9), rgba(59,130,246,0.9));
+      display: grid;
+      place-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 12px 30px rgba(255,45,85,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .creator-avatar::after {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .creator-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .creator-card .tag-list {
+      margin-top: 4px;
+    }
+
+    .watch-panel-wrap {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 16px;
+    }
+
+    .watch-panel {
+      padding: 18px;
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .watch-stage {
+      height: 360px;
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(255,45,85,0.28), transparent 36%),
+        linear-gradient(225deg, rgba(59,130,246,0.22), transparent 36%),
+        url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80") center/cover;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .watch-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.8));
+    }
+
+    .watch-overlay {
+      position: absolute;
+      inset: 18px;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .watch-top,
+    .watch-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .watch-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .progress {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      width: 59%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--red), var(--blue));
+    }
+
+    .watch-info {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .watch-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-chip {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .info-chip strong,
+    .stat-card strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .info-chip span,
+    .stat-card span {
+      color: var(--muted-2);
+      font-size: 0.9rem;
+    }
+
+    .watch-sidebar {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .sidebar-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 4px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+    }
+
+    .rec-item {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .rec-thumb {
+      width: 84px;
+      height: 68px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.5));
+    }
+
+    .rec-copy {
+      display: grid;
+      gap: 4px;
+    }
+
+    .rec-copy strong {
+      font-size: 0.94rem;
+      line-height: 1.2;
+    }
+
+    .rec-copy span {
+      color: var(--muted-2);
+      font-size: 0.82rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -12px -16px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,45,85,0.25), transparent 68%);
+    }
+
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .cta-panel {
+      padding: 28px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,45,85,0.22), transparent 30%),
+        radial-gradient(circle at 90% 0%, rgba(59,130,246,0.18), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      display: grid;
+      gap: 20px;
+      align-items: center;
+      grid-template-columns: 1fr auto;
+      border-color: rgba(255, 45, 85, 0.2);
+    }
+
+    .cta-copy h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .cta-copy p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 16px;
+    }
+
+    .support-panel {
+      padding: 22px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted-2);
+      font-size: 0.92rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      color: white;
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(255, 45, 85, 0.5);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 0 4px rgba(255,45,85,0.1);
+    }
+
+    textarea {
+      min-height: 148px;
+      resize: vertical;
+    }
+
+    .footer {
+      padding: 46px 0 34px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 12px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      max-width: 34ch;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      margin: 12px 0 0;
+    }
+
+    .footer-col h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted-2);
+      font-size: 0.92rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .socials a:hover {
+      transform: translateY(-2px);
+      background: rgba(255,45,85,0.12);
+    }
+
+    .pulse {
+      position: relative;
+    }
+
+    .pulse::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 45, 85, 0.45);
+      animation: pulse 2.2s ease-out infinite;
+    }
+
+    .rise {
+      animation: rise 900ms ease both;
+    }
+
+    .delay-1 {
+      animation-delay: 120ms;
+    }
+
+    .delay-2 {
+      animation-delay: 220ms;
+    }
+
+    .delay-3 {
+      animation-delay: 320ms;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.96); opacity: 0.75; }
+      100% { transform: scale(1.08); opacity: 0; }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .watch-panel-wrap,
+      .support-grid,
+      .cta-panel,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creator-grid,
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-6 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .category-tile,
+      .category-tile:nth-child(1),
+      .category-tile:nth-child(4) {
+        grid-column: auto;
+      }
+
+      .cta-buttons {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero-grid {
+        min-height: auto;
+      }
+
+      .hero-canvas {
+        min-height: 600px;
+      }
+
+      .preview-player {
+        height: 280px;
+      }
+
+      .floating-card.card-a {
+        left: 8px;
+        top: 312px;
+      }
+
+      .floating-card.card-b {
+        right: 8px;
+      }
+
+      .creator-grid,
+      .stats-grid,
+      .grid-6,
+      .form-row,
+      .watch-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .cta-panel {
+        padding: 24px;
+      }
+
+      .hero-stats {
+        gap: 12px;
+      }
+
+      .mini-stat {
+        min-width: 0;
+        flex: 1 1 140px;
+      }
+
+      .rec-item {
+        grid-template-columns: 1fr;
+      }
+
+      .rec-thumb {
+        width: 100%;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Tiviq home">
+          <span class="brand-mark"><span>T</span></span>
+          Tiviq
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#trending">Trending</a>
+          <a href="#categories">Categories</a>
+          <a href="#creators">Creators</a>
+          <a href="#watch">Watch</a>
+          <a href="#support">Support</a>
+        </nav>
+        <a class="header-cta" href="#cta">Start Watching</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy rise">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Fast-moving entertainment discovery</div>
+            <h1>Endless Entertainment. One Platform.</h1>
+            <p class="hero-copy">Tiviq is a media-first streaming discovery experience built for short-form videos, viral clips, live moments, and creator-driven entertainment that keeps the scroll moving and the feed fresh.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary pulse" href="#trending">Start Watching</a>
+              <a class="btn btn-secondary" href="#categories">Explore Trends</a>
+            </div>
+            <div class="hero-stats">
+              <div class="mini-stat rise delay-1">
+                <strong>Live feed</strong>
+                <span>Trending content in motion</span>
+              </div>
+              <div class="mini-stat rise delay-2">
+                <strong>Short-form</strong>
+                <span>Snappy, addictive discovery</span>
+              </div>
+              <div class="mini-stat rise delay-3">
+                <strong>Creator-led</strong>
+                <span>Built around audience energy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual rise delay-1" aria-label="Tiviq entertainment preview">
+            <div class="hero-canvas">
+              <div class="preview-player">
+                <div class="player-topbar">
+                  <div class="live-chip"><span class="live-dot"></span> Live premiere</div>
+                  <div class="count-chip">2.4M watching</div>
+                </div>
+                <div class="play-button" aria-hidden="true"></div>
+                <div class="player-bottom">
+                  <div class="tag-chip">Viral drops</div>
+                  <div class="tag-chip">Short clips</div>
+                  <div class="tag-chip">Trending now</div>
+                  <div class="timeline">
+                    <div class="timeline-track"><span></span></div>
+                    <div class="timeline-meta"><span>00:42</span><span>02:13</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="floating-card card-a">
+                <div class="thumb" style="background-image: linear-gradient(135deg, rgba(255,45,85,0.24), rgba(59,130,246,0.18)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=700&q=80');">
+                  <div class="mini-play"></div>
+                </div>
+                <div class="card-meta">
+                  <strong>Midnight Mixes</strong>
+                  <span>1.2M views · 24 min ago</span>
+                </div>
+              </div>
+
+              <div class="floating-card card-b">
+                <div class="thumb" style="background-image: linear-gradient(135deg, rgba(59,130,246,0.22), rgba(255,45,85,0.18)), url('https://images.unsplash.com/photo-1489599904472-8d1d8d8f0a9f?auto=format&fit=crop&w=700&q=80');">
+                  <div class="mini-play"></div>
+                </div>
+                <div class="card-meta">
+                  <strong>Game Rush Live</strong>
+                  <span>Live now · 84K viewers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="trending">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Trending Content</h2>
+              <p class="section-desc">A horizontal discovery feed built for clips, live streams, viral moments, and quick-hit entertainment that feels like a premium social video stream.</p>
+            </div>
+          </div>
+
+          <div class="feed-scroll">
+            <article class="content-card">
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(255,45,85,0.12), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80');">
+                <span class="poster-badge">Short video · 3.8M views</span>
+              </div>
+              <div class="content-copy">
+                <h3>Neon City Recap</h3>
+                <p>Fast-cut nightlife highlights designed for the endless scroll.</p>
+                <div class="meta-row"><span>Music</span><span>12 min ago</span></div>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(59,130,246,0.12), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=900&q=80');">
+                <span class="poster-badge">Live stream · 84K live</span>
+              </div>
+              <div class="content-copy">
+                <h3>Championship Watch Party</h3>
+                <p>Real-time reactions, live chat energy, and instant replay clips.</p>
+                <div class="meta-row"><span>Sports</span><span>Live</span></div>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(255,45,85,0.12), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80');">
+                <span class="poster-badge">Viral clip · 1.1M likes</span>
+              </div>
+              <div class="content-copy">
+                <h3>Creator Challenge Run</h3>
+                <p>Challenge format content engineered for repeat viewing.</p>
+                <div class="meta-row"><span>Entertainment</span><span>21 min ago</span></div>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(59,130,246,0.12), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=80');">
+                <span class="poster-badge">Tech talk · 240K plays</span>
+              </div>
+              <div class="content-copy">
+                <h3>Future Device Drops</h3>
+                <p>Quick takes on hardware launches and creator-first reviews.</p>
+                <div class="meta-row"><span>Tech</span><span>Today</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="categories">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Categories That Move Fast</h2>
+              <p class="section-desc">Bold tiles make it easy to jump between content lanes without breaking the entertainment flow.</p>
+            </div>
+          </div>
+
+          <div class="grid-6">
+            <article class="category-tile">
+              <h3>Music</h3>
+              <p>Concert clips, drops, remixes, and backstage moments.</p>
+              <div class="tag-list"><span class="tag-chip">Beat drops</span><span class="tag-chip">Live sets</span></div>
+              <div class="category-visual"></div>
+            </article>
+            <article class="category-tile">
+              <h3>Gaming</h3>
+              <p>Stream highlights, speedruns, reactions, and pro play.</p>
+              <div class="tag-list"><span class="tag-chip">Esports</span><span class="tag-chip">Live wins</span></div>
+              <div class="category-visual" style="background: linear-gradient(135deg, rgba(59,130,246,0.92), rgba(39,209,127,0.8));"></div>
+            </article>
+            <article class="category-tile">
+              <h3>Tech</h3>
+              <p>Launch clips, product reactions, and smart breakdowns.</p>
+              <div class="tag-list"><span class="tag-chip">Reviews</span><span class="tag-chip">Drops</span></div>
+              <div class="category-visual" style="background: linear-gradient(135deg, rgba(59,130,246,0.92), rgba(255,45,85,0.82));"></div>
+            </article>
+            <article class="category-tile">
+              <h3>Sports</h3>
+              <p>Big moments, instant recaps, and live-energy clips.</p>
+              <div class="tag-list"><span class="tag-chip">Highlights</span><span class="tag-chip">Live</span></div>
+              <div class="category-visual" style="background: linear-gradient(135deg, rgba(255,45,85,0.92), rgba(255,153,102,0.78));"></div>
+            </article>
+            <article class="category-tile">
+              <h3>Entertainment</h3>
+              <p>Creators, interviews, trailers, and fandom culture.</p>
+              <div class="tag-list"><span class="tag-chip">Buzz</span><span class="tag-chip">Premieres</span></div>
+              <div class="category-visual" style="background: linear-gradient(135deg, rgba(255,45,85,0.92), rgba(39,209,127,0.76));"></div>
+            </article>
+            <article class="category-tile">
+              <h3>Education</h3>
+              <p>Short explainers, skill boosts, and creator lessons.</p>
+              <div class="tag-list"><span class="tag-chip">Quick learn</span><span class="tag-chip">How-to</span></div>
+              <div class="category-visual" style="background: linear-gradient(135deg, rgba(59,130,246,0.92), rgba(148,163,184,0.82));"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="creators">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Featured Creators</h2>
+              <p class="section-desc">Social-first cards built for fast recognition, follower signals, and content style at a glance.</p>
+            </div>
+          </div>
+
+          <div class="creator-grid">
+            <article class="creator-card">
+              <div class="creator-top">
+                <div class="creator-avatar">AR</div>
+                <div>
+                  <h3 class="creator-name">Ava Rush</h3>
+                  <p class="creator-role">2.8M followers</p>
+                </div>
+              </div>
+              <p class="creator-role">Short-form music edits, trend remixes, and premiere reactions.</p>
+              <div class="tag-list"><span class="tag-chip">Music</span><span class="tag-chip">Short clips</span></div>
+            </article>
+
+            <article class="creator-card">
+              <div class="creator-top">
+                <div class="creator-avatar" style="background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(39,209,127,0.92));">KM</div>
+                <div>
+                  <h3 class="creator-name">Kai Mode</h3>
+                  <p class="creator-role">1.9M followers</p>
+                </div>
+              </div>
+              <p class="creator-role">Gaming streaks, live reactions, and competitive highlight reels.</p>
+              <div class="tag-list"><span class="tag-chip">Gaming</span><span class="tag-chip">Live</span></div>
+            </article>
+
+            <article class="creator-card">
+              <div class="creator-top">
+                <div class="creator-avatar" style="background: linear-gradient(135deg, rgba(255,45,85,0.9), rgba(255,153,102,0.92));">NY</div>
+                <div>
+                  <h3 class="creator-name">Nia Y</h3>
+                  <p class="creator-role">980K followers</p>
+                </div>
+              </div>
+              <p class="creator-role">Tech explainers and launch-day reactions in crisp, punchy formats.</p>
+              <div class="tag-list"><span class="tag-chip">Tech</span><span class="tag-chip">Education</span></div>
+            </article>
+
+            <article class="creator-card">
+              <div class="creator-top">
+                <div class="creator-avatar" style="background: linear-gradient(135deg, rgba(39,209,127,0.9), rgba(59,130,246,0.9));">DS</div>
+                <div>
+                  <h3 class="creator-name">Drew Spark</h3>
+                  <p class="creator-role">4.1M followers</p>
+                </div>
+              </div>
+              <p class="creator-role">Sports hype edits, trailer breakdowns, and event recaps.</p>
+              <div class="tag-list"><span class="tag-chip">Sports</span><span class="tag-chip">Entertainment</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="watch">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Watch Experience</h2>
+              <p class="section-desc">A Netflix-style content shell with a strong player focus, a progress system, and a recommendation stack designed for continuous watching.</p>
+            </div>
+          </div>
+
+          <div class="watch-panel-wrap">
+            <article class="watch-panel">
+              <div class="watch-stage">
+                <div class="watch-overlay">
+                  <div class="watch-top">
+                    <div>
+                      <p class="watch-title">Tonight’s Live Drop</p>
+                      <div class="tag-list" style="margin-top: 8px;">
+                        <span class="tag-chip">Live premier</span>
+                        <span class="tag-chip">Trending</span>
+                      </div>
+                    </div>
+                    <div class="count-chip">04:12 PM</div>
+                  </div>
+                  <div class="watch-bottom">
+                    <div class="count-chip">2.1M viewers</div>
+                    <div class="progress"><span></span></div>
+                    <div class="count-chip">59% watched</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="watch-info">
+                <div class="watch-info-grid">
+                  <div class="info-chip">
+                    <strong>Auto-preview flow</strong>
+                    <span>Static player mock that signals continuous motion.</span>
+                  </div>
+                  <div class="info-chip">
+                    <strong>Episode stack</strong>
+                    <span>Fast recommendations keep the next clip in reach.</span>
+                  </div>
+                </div>
+                <div class="info-chip">
+                  <strong>Audience energy</strong>
+                  <span>Built for hover, scroll, and rapid content switching on every screen size.</span>
+                </div>
+              </div>
+            </article>
+
+            <aside class="watch-sidebar">
+              <div class="sidebar-title">Next up <span class="count-chip">For you</span></div>
+              <div class="rec-item">
+                <div class="rec-thumb" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=700&q=80');"></div>
+                <div class="rec-copy">
+                  <strong>Rapid Reactions Live</strong>
+                  <span>89K watching · Sports</span>
+                </div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-thumb" style="background-image: url('https://images.unsplash.com/photo-1516457982739-4b1e38c7f4b6?auto=format&fit=crop&w=700&q=80');"></div>
+                <div class="rec-copy">
+                  <strong>Beat Lab Session</strong>
+                  <span>Music clip · 1.4M plays</span>
+                </div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-thumb" style="background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=700&q=80');"></div>
+                <div class="rec-copy">
+                  <strong>Creator Street Talk</strong>
+                  <span>Interview cut · 420K views</span>
+                </div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-thumb" style="background-image: url('https://images.unsplash.com/photo-1485322551133-3a9a64f0b5ae?auto=format&fit=crop&w=700&q=80');"></div>
+                <div class="rec-copy">
+                  <strong>Tech First Look</strong>
+                  <span>Review snippet · Trending</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Platform Momentum</h2>
+              <p class="section-desc">Big numbers, bold contrast, and immediate readability for the fastest possible scan.</p>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <p class="stat-number">10M+</p>
+              <strong>Videos Watched</strong>
+              <span>High-volume sessions across the feed.</span>
+            </article>
+            <article class="stat-card">
+              <p class="stat-number">2M+</p>
+              <strong>Active Users</strong>
+              <span>A living audience moving with the trends.</span>
+            </article>
+            <article class="stat-card">
+              <p class="stat-number">500K+</p>
+              <strong>Creators</strong>
+              <span>Short-form storytellers and live hosts.</span>
+            </article>
+            <article class="stat-card">
+              <p class="stat-number">1B+</p>
+              <strong>Monthly Views</strong>
+              <span>Discovery at streaming-platform scale.</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="cta">
+        <div class="container">
+          <div class="cta-panel">
+            <div class="cta-copy">
+              <h2>Join the Future of Content</h2>
+              <p>Build your profile, watch what is trending, and jump into a fast-moving ecosystem where entertainment never feels static.</p>
+            </div>
+            <div class="cta-buttons">
+              <a class="btn btn-secondary" href="#support">Create Account</a>
+              <a class="btn btn-primary pulse" href="#trending">Start Watching Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="support">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Support & Help Center</h2>
+              <p class="section-desc">A lightweight support area that keeps the content platform feeling complete without slowing the experience down.</p>
+            </div>
+          </div>
+
+          <div class="support-grid">
+            <div class="support-panel content-card">
+              <h3 class="support-title">Quick FAQ</h3>
+              <p class="support-copy">Answers to the most common account and viewing questions.</p>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <strong>How do I start watching?</strong>
+                  <p>Create an account, choose a category, and jump into the trending feed instantly.</p>
+                </div>
+                <div class="faq-item">
+                  <strong>Can I follow creators?</strong>
+                  <p>Yes. Tiviq is built around creator discovery, follower counts, and content lanes.</p>
+                </div>
+                <div class="faq-item">
+                  <strong>Does the experience work on mobile?</strong>
+                  <p>Yes. The layout compresses into stacked sections and keeps the feed easy to scan.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="support-panel content-card">
+              <h3 class="support-title">Contact Support</h3>
+              <p class="support-copy">Send a message or request help from the Tiviq support desk.</p>
+              <form class="contact-form">
+                <div class="form-row">
+                  <input type="text" name="name" placeholder="Your name" />
+                  <input type="email" name="email" placeholder="Email address" />
+                </div>
+                <div class="form-row">
+                  <input type="text" name="topic" placeholder="Topic" />
+                  <input type="text" name="account" placeholder="Account / channel" />
+                </div>
+                <textarea name="message" placeholder="Tell us what you need help with"></textarea>
+                <button class="btn btn-primary pulse" type="button">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top">
+              <span class="brand-mark"><span>T</span></span>
+              Tiviq
+            </a>
+            <p>Entertainment discovery for clips, creators, live streams, and the next thing people cannot stop watching.</p>
+          </div>
+
+          <div class="footer-col">
+            <h3>Navigate</h3>
+            <div class="footer-links">
+              <a href="#trending">Trending</a>
+              <a href="#categories">Categories</a>
+              <a href="#creators">Creators</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Company</h3>
+            <div class="footer-links">
+              <a href="#watch">Watch Experience</a>
+              <a href="#support">Support</a>
+              <a href="#cta">Account</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Social</h3>
+            <div class="socials" aria-label="Social links">
+              <a href="#" aria-label="Instagram">I</a>
+              <a href="#" aria-label="X">X</a>
+              <a href="#" aria-label="YouTube">Y</a>
+              <a href="#" aria-label="TikTok">T</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Tiviq.online. Built for streaming-style discovery.</span>
+          <span>Fast. Viral. Continuous.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
